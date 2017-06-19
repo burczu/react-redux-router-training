@@ -6,7 +6,7 @@ const events = [
     id: 1,
     name: 'meetJS Wrocław',
     place: 'Monterail',
-    date: '2017-08-12',
+    date: '2017-05-12',
     time: '18:00'
   },
   {
@@ -25,4 +25,16 @@ const events = [
   }
 ];
 
-ReactDOM.render(<p>Your app goes here...</p>, document.getElementById('root'));
+ReactDOM.render(
+  <ul>
+    {events.map(item => {
+      return (
+        <li key={item.id}>
+          <strong>{item.name}</strong><br />
+          Gdzie: {item.place}<br />
+          Kiedy: {item.date} - {item.time}
+        </li>
+      );
+    })}
+  </ul>
+  , document.getElementById('root'));
