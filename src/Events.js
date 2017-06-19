@@ -40,6 +40,16 @@ class Events extends React.Component {
     this.setState({ events: [] });
   }
 
+  onDeleteClicked(id, event) {
+    event.preventDefault();
+
+    const filteredArray = this.state.events.filter(item => item.id !== id);
+
+    this.setState({
+      events: filteredArray
+    });
+  }
+
   render() {
     return (
       <div>
@@ -52,7 +62,8 @@ class Events extends React.Component {
                 <li key={item.id}>
                   <strong>{item.name}</strong><br />
                   Gdzie: {item.place}<br />
-                  Kiedy: {item.date} - {item.time}
+                  Kiedy: {item.date} - {item.time}<br />
+                  <button onClick={this.onDeleteClicked.bind(this, item.id)}>Usuń</button>
                 </li>
               );
             }
