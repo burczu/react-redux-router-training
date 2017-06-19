@@ -1,10 +1,43 @@
 import React from 'react';
 
 class Events extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { events: [] };
+  }
+
+  componentDidMount() {
+    this.setState({
+      events: [
+        {
+          id: 1,
+          name: 'meetJS Wrocław',
+          place: 'Monterail',
+          date: '2017-05-12',
+          time: '18:00'
+        },
+        {
+          id: 2,
+          name: 'DevOps Wrocław',
+          place: 'Mleczarnia',
+          date: '2017-08-14',
+          time: '19:30'
+        },
+        {
+          id: 3,
+          name: 'Wrocławska Grupa .NET',
+          place: 'Nietota',
+          date: '2017-08-20',
+          time: '18:30'
+        }
+      ]
+    });
+  }
+
   render() {
     return (
       <ul>
-        {this.props.events.map(item => {
+        {this.state.events.map(item => {
           const date = new Date(item.date);
 
           if (date >= Date.now()) {
