@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import renderEvents from './Events';
+import Events from './Events';
 
 const events = [
   {
@@ -27,6 +27,4 @@ const events = [
   }
 ];
 
-
-
-ReactDOM.render(renderEvents(events), document.getElementById('root'));
+ReactDOM.render(<Events events={events} />, document.getElementById('root'));
