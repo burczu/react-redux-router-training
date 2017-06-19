@@ -1,5 +1,6 @@
 import React from 'react';
 import events from './data/events';
+import EventItem from './EventItem';
 
 class Events extends React.Component {
   constructor(props) {
@@ -38,12 +39,7 @@ class Events extends React.Component {
 
             if (date >= Date.now()) {
               return (
-                <li key={item.id}>
-                  <strong>{item.name}</strong><br />
-                  Gdzie: {item.place}<br />
-                  Kiedy: {item.date} - {item.time}<br />
-                  <button onClick={this.onDeleteClicked.bind(this, item.id)}>Usuń</button>
-                </li>
+                <EventItem {...item} onDeleteClicked={this.onDeleteClicked.bind(this)} />
               );
             }
 
