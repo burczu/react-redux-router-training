@@ -1,11 +1,12 @@
 import React from 'react';
 import events from './data/events';
 import EventItem from './EventItem';
+import EventFilters from './EventFilters';
 
 class Events extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { events: [] };
+    this.state = { events: [], filter: '' };
   }
 
   componentDidMount() {
@@ -30,14 +31,23 @@ class Events extends React.Component {
     });
   }
 
+  onFilterChange(event) {
+    const value = event.currentTarget.value;
+
+    this.setState({
+      filter: value
+    });
+  };
+
   render() {
     return (
       <div>
+        <EventFilters onFilterChange={this.onFilterChange.bind(this)} />
         <ul>
           {this.state.events.map(item => {
             const date = new Date(item.date);
 
-            if (date >= Date.now()) {
+            if (date >= Date.now() && item.name.indexOf(this.state.filter) > -1) {
               return (
                 <EventItem {...item} onDeleteClicked={this.onDeleteClicked.bind(this)} />
               );
