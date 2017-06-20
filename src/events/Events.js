@@ -1,14 +1,18 @@
 import React from 'react';
-import events from '../data/events';
+import PropTypes from 'prop-types';
 import EventItem from './EventItem';
 import EventFilters from './EventFilters';
 import EventAdd from './EventAdd';
+import { connect } from 'react-redux';
 
 class Events extends React.Component {
+  static propTypes = {
+    events: PropTypes.array.isRequired
+  }
+
   constructor(props) {
     super(props);
     this.state = {
-      events: [],
       filter: '',
       newName: '',
       newNameValid: false,
@@ -19,12 +23,6 @@ class Events extends React.Component {
       newHour: '',
       newHourValid: false
     };
-  }
-
-  componentDidMount() {
-    this.setState({
-      events
-    });
   }
 
   onClearClicked(event) {
@@ -114,7 +112,7 @@ class Events extends React.Component {
       <div>
         <EventFilters onFilterChange={this.onFilterChange.bind(this)} />
         <ul>
-          {this.state.events.map(item => {
+          {this.props.events.map(item => {
             const date = new Date(item.date);
 
             if (date >= Date.now() && item.name.indexOf(this.state.filter) > -1) {
@@ -142,4 +140,11 @@ class Events extends React.Component {
   }
 };
 
-export default Events;
+const mapStateToProps = (state) => {
+  return { ...state };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Events);
