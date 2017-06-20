@@ -119,7 +119,7 @@ class Events extends React.Component {
 
             if (date >= Date.now() && item.name.indexOf(this.state.filter) > -1) {
               return (
-                <EventItem {...item} onDeleteClicked={this.onDeleteClicked.bind(this)} />
+                <EventItem {...item} key={item.id} onDeleteClicked={this.onDeleteClicked.bind(this)} />
               );
             }
 
