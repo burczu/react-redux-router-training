@@ -4,7 +4,8 @@ import {
   Route
 } from 'react-router-dom';
 
-import Events from './Events';
+import Events from './events/Events';
+import Details from './details/Details';
 
 class App extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class App extends React.Component {
       <Router>
         <div className="container">
           <Route exact path="/" component={Events} />
+          <Route exact path="/details/:id" component={Details} />
         </div>
       </Router>
     );
