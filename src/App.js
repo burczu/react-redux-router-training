@@ -13,7 +13,7 @@ class App extends React.Component {
       <Router>
         <div className="container">
           <Route exact path="/" component={Events} />
-          <Route exact path="/details/:id" component={Details} />
+          <Route path="/details/:id" component={Details} />
         </div>
       </Router>
     );
