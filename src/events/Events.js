@@ -35,11 +35,7 @@ class Events extends React.Component {
   onDeleteClicked(id, event) {
     event.preventDefault();
 
-    const filteredArray = this.state.events.filter(item => item.id !== id);
-
-    this.setState({
-      events: filteredArray
-    });
+    this.props.deleteEvent(id);
   }
 
   onFilterChange(event) {
@@ -146,7 +142,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    clearEvents: () => dispatch(eventActions.clearEvents())
+    clearEvents: () => dispatch(eventActions.clearEvents()),
+    deleteEvent: (id) => dispatch(eventActions.deleteEvent(id))
   };
 };
 
