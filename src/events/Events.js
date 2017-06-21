@@ -8,7 +8,7 @@ import * as eventActions from '../actions/events';
 
 class Events extends React.Component {
   static propTypes = {
-    events: PropTypes.array.isRequired
+    eventsReducer: PropTypes.object.isRequired
   }
 
   onClearClicked(event) {
@@ -57,7 +57,7 @@ class Events extends React.Component {
       newDateValid,
       newHour,
       newHourValid
-    } = this.props;
+    } = this.props.eventsReducer;
 
     if (newNameValid && newWhereValid && newHourValid && newDateValid) {
       this.props.addEvent(newName, newWhere, newDate, newHour);
@@ -69,10 +69,10 @@ class Events extends React.Component {
       <div>
         <EventFilters onFilterChange={this.onFilterChange.bind(this)} />
         <ul>
-          {this.props.events.map(item => {
+          {this.props.eventsReducer.events.map(item => {
             const date = new Date(item.date);
 
-            if (date >= Date.now() && item.name.indexOf(this.props.filter) > -1) {
+            if (date >= Date.now() && item.name.indexOf(this.props.eventsReducer.filter) > -1) {
               return (
                 <EventItem {...item} key={item.id} onDeleteClicked={this.onDeleteClicked.bind(this)} />
               );
@@ -82,10 +82,10 @@ class Events extends React.Component {
           })}
         </ul>
         <button onClick={this.onClearClicked.bind(this)}>Wyczyść</button>
-        <EventAdd name={this.props.newName}
-                  where={this.props.newWhere}
-                  date={this.props.newDate}
-                  hour={this.props.newHour}
+        <EventAdd name={this.props.eventsReducer.newName}
+                  where={this.props.eventsReducer.newWhere}
+                  date={this.props.eventsReducer.newDate}
+                  hour={this.props.eventsReducer.newHour}
                   onNameChanged={this.onNameChanged.bind(this)}
                   onWhereChanged={this.onWhereChanged.bind(this)}
                   onDateChanged={this.onDateChanged.bind(this)}
