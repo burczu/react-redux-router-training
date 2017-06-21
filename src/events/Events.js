@@ -48,30 +48,19 @@ class Events extends React.Component {
   onEventAddSubmit(event) {
     event.preventDefault();
 
-    const { newNameValid, newWhereValid, newHourValid, newDateValid } = this.state;
-    const events = this.state.events;
-    const maxId = Math.max(...events.map(item => item.id));
+    const {
+      newName,
+      newNameValid,
+      newWhere,
+      newWhereValid,
+      newDate,
+      newDateValid,
+      newHour,
+      newHourValid
+    } = this.props;
 
     if (newNameValid && newWhereValid && newHourValid && newDateValid) {
-      events.push({
-        id: maxId + 1,
-        name: this.state.newName,
-        place: this.state.newWhere,
-        date: this.state.newDate,
-        time: this.state.newHour
-      });
-
-      this.setState({
-        events,
-        newName: '',
-        newNameValid: false,
-        newWhere: '',
-        newWhereValid: false,
-        newDate: '',
-        newDateValid: false,
-        newHour: '',
-        newHourValid: false
-      });
+      this.props.addEvent(newName, newWhere, newDate, newHour);
     }
   }
 
@@ -119,7 +108,8 @@ const mapDispatchToProps = (dispatch) => {
     nameChanged: (name, valid) => dispatch(eventActions.nameChanged(name, valid)),
     whereChanged: (where, valid) => dispatch(eventActions.whereChanged(where, valid)),
     dateChanged: (date, valid) => dispatch(eventActions.dateChanged(date, valid)),
-    hourChanged: (hour, valid) => dispatch(eventActions.hourChanged(hour, valid))
+    hourChanged: (hour, valid) => dispatch(eventActions.hourChanged(hour, valid)),
+    addEvent: (name, where, date, hour) => dispatch(eventActions.addEvent(name, where, date, hour))
   };
 };
 
