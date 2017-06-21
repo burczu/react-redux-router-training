@@ -5,7 +5,7 @@ export function getEvents() {
   return (dispatch) => {
     dispatch(getEventsRequested());
 
-    fetch('https://nafrontendzie.pl/events.json')
+    fetch('http://frontendinsights.com/events.json')
       .then(response => response.json())
       .then(data => dispatch(getEventsSuccess(data)))
       .catch(error => dispatch(getEventsError(error)));
