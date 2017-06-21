@@ -5,6 +5,7 @@ import EventFilters from './EventFilters';
 import EventAdd from './EventAdd';
 import { connect } from 'react-redux';
 import * as eventActions from '../actions/events';
+import Loader from '../common/Loader';
 
 class Events extends React.Component {
   static propTypes = {
@@ -72,19 +73,21 @@ class Events extends React.Component {
     return (
       <div>
         <EventFilters onFilterChange={this.onFilterChange.bind(this)} />
-        <ul>
-          {this.props.eventsReducer.events.map(item => {
-            const date = new Date(item.date);
+        <Loader isLoading={this.props.eventsReducer.isLoading}>
+          <ul>
+            {this.props.eventsReducer.events.map(item => {
+              const date = new Date(item.date);
 
-            if (date >= Date.now() && item.name.indexOf(this.props.eventsReducer.filter) > -1) {
-              return (
-                <EventItem {...item} key={item.id} onDeleteClicked={this.onDeleteClicked.bind(this)} />
-              );
-            }
+              if (date >= Date.now() && item.name.indexOf(this.props.eventsReducer.filter) > -1) {
+                return (
+                  <EventItem {...item} key={item.id} onDeleteClicked={this.onDeleteClicked.bind(this)} />
+                );
+              }
 
-            return null;
-          })}
-        </ul>
+              return null;
+            })}
+          </ul>
+        </Loader>
         <button onClick={this.onClearClicked.bind(this)}>Wyczyść</button>
         <EventAdd name={this.props.eventsReducer.newName}
                   where={this.props.eventsReducer.newWhere}

@@ -12,7 +12,7 @@ const initialState = {
 export function detailsReducer(state = initialState, action) {
   switch (action.type) {
     case constants.DETAILS_GET_DETAILS:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, dataLoaded: false };
     case constants.DETAILS_GET_DETAILS_SUCCESS:
       return { ...state, isLoading: false, event: action.payload.data, dataLoaded: true };
     case constants.DETAILS_GET_DETAILS_ERROR:

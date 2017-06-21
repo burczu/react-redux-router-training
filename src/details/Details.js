@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as detailsActions from '../actions/details';
+import Loader from '../common/Loader';
 
 class Details extends React.Component {
   componentDidMount() {
@@ -20,12 +21,14 @@ class Details extends React.Component {
     const { name, place, date, time } = this.props.detailsReducer.event;
 
     return (
-      <div>
-        <strong>Nazwa:</strong> {name}<br />
-        <strong>Miejsce:</strong> {place}<br />
-        <strong>Data:</strong> {date}<br />
-        <strong>Godzina:</strong> {time}
-      </div>
+      <Loader isLoading={this.props.detailsReducer.isLoading}>
+        <div>
+          <strong>Nazwa:</strong> {name}<br />
+          <strong>Miejsce:</strong> {place}<br />
+          <strong>Data:</strong> {date}<br />
+          <strong>Godzina:</strong> {time}
+        </div>
+      </Loader>
     );
   }
 }
