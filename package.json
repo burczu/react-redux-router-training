@@ -9,6 +9,7 @@
     "redux": "^3.7.0"
   },
   "devDependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.5.10",
     "react-redux": "^5.0.5",
     "react-scripts": "1.0.7"
