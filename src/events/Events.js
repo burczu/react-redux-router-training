@@ -11,6 +11,10 @@ class Events extends React.Component {
     eventsReducer: PropTypes.object.isRequired
   }
 
+  componentDidMount() {
+    this.props.getEvents();
+  }
+
   onClearClicked(event) {
     event.preventDefault();
 
@@ -102,6 +106,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
+    getEvents: () => dispatch(eventActions.getEvents()),
     clearEvents: () => dispatch(eventActions.clearEvents()),
     deleteEvent: (id) => dispatch(eventActions.deleteEvent(id)),
     filterEvents: (filter) => dispatch(eventActions.filterEvents(filter)),
