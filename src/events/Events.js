@@ -11,20 +11,6 @@ class Events extends React.Component {
     events: PropTypes.array.isRequired
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      newName: '',
-      newNameValid: false,
-      newWhere: '',
-      newWhereValid: false,
-      newDate: '',
-      newDateValid: false,
-      newHour: '',
-      newHourValid: false
-    };
-  }
-
   onClearClicked(event) {
     event.preventDefault();
 
@@ -44,31 +30,19 @@ class Events extends React.Component {
   };
 
   onNameChanged(name, valid) {
-    this.setState({
-      newName: name,
-      newNameValid: valid
-    });
+    this.props.nameChanged(name, valid);
   }
 
   onWhereChanged(where, valid) {
-    this.setState({
-      newWhere: where,
-      newWhereValid: valid
-    });
+    this.props.whereChanged(where, valid);
   }
 
   onDateChanged(date, valid) {
-    this.setState({
-      newDate: date,
-      newDateValid: valid
-    });
+    this.props.dateChanged(date, valid);
   }
 
   onHourChanged(hour, valid) {
-    this.setState({
-      newHour: hour,
-      newHourValid: valid
-    });
+    this.props.hourChanged(hour, valid);
   }
 
   onEventAddSubmit(event) {
@@ -119,10 +93,10 @@ class Events extends React.Component {
           })}
         </ul>
         <button onClick={this.onClearClicked.bind(this)}>Wyczyść</button>
-        <EventAdd name={this.state.newName}
-                  where={this.state.newWhere}
-                  date={this.state.newDate}
-                  hour={this.state.newHour}
+        <EventAdd name={this.props.newName}
+                  where={this.props.newWhere}
+                  date={this.props.newDate}
+                  hour={this.props.newHour}
                   onNameChanged={this.onNameChanged.bind(this)}
                   onWhereChanged={this.onWhereChanged.bind(this)}
                   onDateChanged={this.onDateChanged.bind(this)}
@@ -141,7 +115,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     clearEvents: () => dispatch(eventActions.clearEvents()),
     deleteEvent: (id) => dispatch(eventActions.deleteEvent(id)),
-    filterEvents: (filter) => dispatch(eventActions.filterEvents(filter))
+    filterEvents: (filter) => dispatch(eventActions.filterEvents(filter)),
+    nameChanged: (name, valid) => dispatch(eventActions.nameChanged(name, valid)),
+    whereChanged: (where, valid) => dispatch(eventActions.whereChanged(where, valid)),
+    dateChanged: (date, valid) => dispatch(eventActions.dateChanged(date, valid)),
+    hourChanged: (hour, valid) => dispatch(eventActions.hourChanged(hour, valid))
   };
 };
 
