@@ -14,7 +14,6 @@ class Events extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filter: '',
       newName: '',
       newNameValid: false,
       newWhere: '',
@@ -41,9 +40,7 @@ class Events extends React.Component {
   onFilterChange(event) {
     const value = event.currentTarget.value;
 
-    this.setState({
-      filter: value
-    });
+    this.props.filterEvents(value);
   };
 
   onNameChanged(name, valid) {
@@ -112,7 +109,7 @@ class Events extends React.Component {
           {this.props.events.map(item => {
             const date = new Date(item.date);
 
-            if (date >= Date.now() && item.name.indexOf(this.state.filter) > -1) {
+            if (date >= Date.now() && item.name.indexOf(this.props.filter) > -1) {
               return (
                 <EventItem {...item} key={item.id} onDeleteClicked={this.onDeleteClicked.bind(this)} />
               );
@@ -143,7 +140,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     clearEvents: () => dispatch(eventActions.clearEvents()),
-    deleteEvent: (id) => dispatch(eventActions.deleteEvent(id))
+    deleteEvent: (id) => dispatch(eventActions.deleteEvent(id)),
+    filterEvents: (filter) => dispatch(eventActions.filterEvents(filter))
   };
 };
 
