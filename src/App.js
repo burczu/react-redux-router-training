@@ -4,7 +4,7 @@ import {
   Route
 } from 'react-router-dom';
 
-import Events from './Events';
+import Events from './events/Events';
 
 class App extends React.Component {
   render() {

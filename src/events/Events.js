@@ -1,5 +1,5 @@
 import React from 'react';
-import events from './data/events';
+import events from '../data/events';
 import EventItem from './EventItem';
 import EventFilters from './EventFilters';
 import EventAdd from './EventAdd';
