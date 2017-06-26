@@ -2,6 +2,7 @@ import * as constants from '../constants';
 import events from '../data/events.json';
 
 const initialState = {
+  events,
   event: {}
 };
 
