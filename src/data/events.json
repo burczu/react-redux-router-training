@@ -40,5 +40,19 @@
     "place": "Jeszcze nie wybrano",
     "date": "2017-09-30",
     "time": "18:30"
+  },
+  {
+    "id": 7,
+    "name": "LearnJS Meetup",
+    "place": "Lama Media",
+    "date": "2018-01-24",
+    "time": "19:30"
+  },
+  {
+    "id": 8,
+    "name": "JUG",
+    "place": "Nokia",
+    "date": "2018-02-08",
+    "time": "19:00"
   }
 ]
