@@ -24,21 +24,21 @@
     "id": 4,
     "name": "meetJS Wrocław",
     "place": "Jeszcze nie wybrano",
-    "date": "2017-09-12",
+    "date": "2017-11-12",
     "time": "18:00"
   },
   {
     "id": 5,
     "name": "JUG Wrocław",
     "place": "Mleczarnia",
-    "date": "2017-09-27",
+    "date": "2017-11-27",
     "time": "19:30"
   },
   {
     "id": 6,
     "name": "Wrocławska Grupa .NET",
     "place": "Jeszcze nie wybrano",
-    "date": "2017-09-30",
+    "date": "2017-12-30",
     "time": "18:30"
   },
   {
