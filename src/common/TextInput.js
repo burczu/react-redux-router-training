@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/styles.css';
 
 class TextInput extends React.Component {
   static propTypes = {
@@ -36,7 +37,7 @@ class TextInput extends React.Component {
                placeholder={placeholder}
                value={value}
         />
-        <label style={style}>To pole jest wymagane!</label>
+        <label className="error" style={style}>To pole jest wymagane!</label>
       </div>
     );
   }
